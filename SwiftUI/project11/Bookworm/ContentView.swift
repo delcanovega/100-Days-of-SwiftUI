@@ -73,9 +73,9 @@ struct ContentView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Book.self, configurations: config)
-        let badExample = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "Terrible experience.", rating: 1)
+        let badExample = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "Terrible experience.", rating: 1, date: Date.now)
         container.mainContext.insert(badExample)
-        let goodExample = Book(title: "El Último Deseo", author: "Andrzej Sapkowski", genre: "Fantasy", review: "Pretty good.", rating: 4)
+        let goodExample = Book(title: "El Último Deseo", author: "Andrzej Sapkowski", genre: "Fantasy", review: "Pretty good.", rating: 4, date: Date.now)
         container.mainContext.insert(goodExample)
 
         return ContentView()
