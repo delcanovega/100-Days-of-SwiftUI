@@ -29,12 +29,14 @@ struct ContentView: View {
                             VStack(alignment: .leading) {
                                 Text(book.title)
                                     .font(.headline)
+                                    .foregroundStyle(book.rating == 1 ? Color.red : Color.primary)
 
                                 Text(book.author)
                                     .foregroundStyle(.secondary)
                             }
                         }
                     }
+                    .shadow(color: book.rating == 1 ? Color.red : Color.primary, radius: book.rating == 1 ? 10 : 0)
                 }
                 .onDelete(perform: deleteBooks)
             }
@@ -68,5 +70,16 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-}
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Book.self, configurations: config)
+        let badExample = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "Terrible experience.", rating: 1)
+        container.mainContext.insert(badExample)
+        let goodExample = Book(title: "El Último Deseo", author: "Andrzej Sapkowski", genre: "Fantasy", review: "Pretty good.", rating: 4)
+        container.mainContext.insert(goodExample)
+
+        return ContentView()
+            .modelContainer(container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }}
