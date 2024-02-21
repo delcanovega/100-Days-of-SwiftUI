@@ -41,7 +41,7 @@ struct DetailView: View {
             RatingView(rating: .constant(book.rating))
                 .font(.largeTitle)
             
-            Text("Finished on \(Text(book.date, style: .date))")
+            Text("Finished on \(book.date, style: .date)")
                 .font(.footnote)
                 .padding()
         }
