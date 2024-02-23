@@ -5,46 +5,20 @@
 //  Created by Paul Hudson on 15/10/2023.
 //
 
+import SwiftData
 import SwiftUI
 
-struct ExpenseItem: Identifiable, Codable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-}
-
-@Observable
-class Expenses {
-    var items = [ExpenseItem]() {
-        didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items")
-            }
-        }
-    }
-
-    init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                items = decodedItems
-                return
-            }
-        }
-
-        items = []
-    }
-}
-
 struct ContentView: View {
-    @State private var expenses = Expenses()
+    
+    @Environment(\.modelContext) var modelContext
+    @Query var expenses: [ExpenseItem]
 
     @State private var showingAddExpense = false
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items) { item in
+                ForEach(expenses) { item in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(item.name)
@@ -67,16 +41,29 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expenses)
+                AddView()
             }
         }
     }
 
     func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expense = expenses[offset]
+            modelContext.delete(expense)
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: ExpenseItem.self, configurations: config)
+        let expense = ExpenseItem(name: "Food", type: "Personal", amount: 11.99)
+        container.mainContext.insert(expense)
+        
+        return ContentView()
+            .modelContainer(container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }
