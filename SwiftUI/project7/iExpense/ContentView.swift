@@ -10,34 +10,35 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @Environment(\.modelContext) var modelContext
-    @Query var expenses: [ExpenseItem]
-
     @State private var showingAddExpense = false
+    
+    @State private var sortOrder = [
+        SortDescriptor(\ExpenseItem.name),
+        SortDescriptor(\ExpenseItem.amount),
+    ]
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(expenses) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-
-                            Text(item.type)
-                        }
-
-                        Spacer()
-
-                        Text(item.amount, format: .currency(code: "USD"))
-                    }
-                }
-                .onDelete(perform: removeItems)
-            }
+            ExpensesView(sortOrder: sortOrder)
             .navigationTitle("iExpense")
             .toolbar {
                 Button("Add Expense", systemImage: "plus") {
                     showingAddExpense = true
+                }
+                Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Sort by Name")
+                            .tag([
+                                SortDescriptor(\ExpenseItem.name),
+                                SortDescriptor(\ExpenseItem.amount),
+                            ])
+                        
+                        Text("Sort by Amount")
+                            .tag([
+                                SortDescriptor(\ExpenseItem.amount),
+                                SortDescriptor(\ExpenseItem.name),
+                            ])
+                    }
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
@@ -45,25 +46,8 @@ struct ContentView: View {
             }
         }
     }
-
-    func removeItems(at offsets: IndexSet) {
-        for offset in offsets {
-            let expense = expenses[offset]
-            modelContext.delete(expense)
-        }
-    }
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: ExpenseItem.self, configurations: config)
-        let expense = ExpenseItem(name: "Food", type: "Personal", amount: 11.99)
-        container.mainContext.insert(expense)
-        
-        return ContentView()
-            .modelContainer(container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
-    }
+    ContentView()
 }
