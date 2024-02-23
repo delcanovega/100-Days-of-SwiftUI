@@ -13,8 +13,8 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(results) { user in
+            List(results) { user in
+                NavigationLink(value: user) {
                     HStack {
                         Button("", systemImage: "moonphase.full.moon") {}
                             .font(.footnote)
@@ -30,6 +30,9 @@ struct ContentView: View {
             }
             .navigationTitle("Friendface")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: User.self) { user in
+                UserView(user: user)
+            }
             .task {
                 await loadData()
             }

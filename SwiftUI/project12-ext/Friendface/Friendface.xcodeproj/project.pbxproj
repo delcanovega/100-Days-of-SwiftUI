@@ -13,6 +13,7 @@
 		EFE2ACD32B894F5E00C8729E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE2ACD22B894F5E00C8729E /* Preview Assets.xcassets */; };
 		EFE2ACDA2B894F9600C8729E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2ACD92B894F9600C8729E /* User.swift */; };
 		EFE2ACDC2B89506400C8729E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2ACDB2B89506400C8729E /* Friend.swift */; };
+		EFE2ACDE2B89577100C8729E /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2ACDD2B89577100C8729E /* UserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		EFE2ACD22B894F5E00C8729E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EFE2ACD92B894F9600C8729E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EFE2ACDB2B89506400C8729E /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		EFE2ACDD2B89577100C8729E /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				EFE2ACCB2B894F5C00C8729E /* FriendfaceApp.swift */,
 				EFE2ACCD2B894F5C00C8729E /* ContentView.swift */,
+				EFE2ACDD2B89577100C8729E /* UserView.swift */,
 				EFE2ACD92B894F9600C8729E /* User.swift */,
 				EFE2ACDB2B89506400C8729E /* Friend.swift */,
 				EFE2ACCF2B894F5E00C8729E /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				EFE2ACCE2B894F5C00C8729E /* ContentView.swift in Sources */,
 				EFE2ACCC2B894F5C00C8729E /* FriendfaceApp.swift in Sources */,
+				EFE2ACDE2B89577100C8729E /* UserView.swift in Sources */,
 				EFE2ACDA2B894F9600C8729E /* User.swift in Sources */,
 				EFE2ACDC2B89506400C8729E /* Friend.swift in Sources */,
 			);
