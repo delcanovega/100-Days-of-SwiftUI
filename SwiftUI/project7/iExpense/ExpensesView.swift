@@ -32,8 +32,9 @@ struct ExpensesView: View {
             .onDelete(perform: removeItems)
         }
     }
-    init(sortOrder: [SortDescriptor<ExpenseItem>]) {
-        _expenses = Query(sort: sortOrder)
+    init(filterOptions: Set<String>, sortOrder: [SortDescriptor<ExpenseItem>]) {
+        let filter = #Predicate<ExpenseItem> { filterOptions.contains($0.type) }
+        _expenses = Query(filter: filter, sort: sortOrder)
     }
     
     func removeItems(at offsets: IndexSet) {
@@ -52,7 +53,7 @@ struct ExpensesView: View {
         let expense = ExpenseItem(name: "Food", type: "Personal", amount: 11.99)
         container.mainContext.insert(expense)
         
-        return ExpensesView(sortOrder: [SortDescriptor(\ExpenseItem.name)])
+        return ExpensesView(filterOptions: ["Business", "Personal"], sortOrder: [SortDescriptor(\ExpenseItem.name)])
             .modelContainer(container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
