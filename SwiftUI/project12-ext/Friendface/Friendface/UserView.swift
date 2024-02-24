@@ -78,5 +78,5 @@ struct UserView: View {
 }
 
 #Preview {
-    UserView(user: User(id: UUID(), name: "Max", age: 32, isActive: true, registered: .now, email: "max@harder.com", company: "Power Enterprises", about: "Oh, Max Power...", address: "Evergeen Terrace 123", tags: ["A", "B", "C"], friends: []))
+    UserView(user: User(id: UUID(), name: "Max", age: 32, isActive: true, registered: Date.now, email: "max@harder.com", company: "Power Enterprises", about: "Oh, Max Power...", address: "Evergeen Terrace 123", tags: ["A", "B", "C"], friends: []))
 }

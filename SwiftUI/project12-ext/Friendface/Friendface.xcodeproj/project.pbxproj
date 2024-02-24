@@ -43,7 +43,6 @@
 		EFE2ACBF2B894F5C00C8729E = {
 			isa = PBXGroup;
 			children = (
-				EFE2ACDF2B89653500C8729E /* FriendsView.swift */,
 				EFE2ACCA2B894F5C00C8729E /* Friendface */,
 				EFE2ACC92B894F5C00C8729E /* Products */,
 			);
@@ -60,6 +59,7 @@
 		EFE2ACCA2B894F5C00C8729E /* Friendface */ = {
 			isa = PBXGroup;
 			children = (
+				EFE2ACDF2B89653500C8729E /* FriendsView.swift */,
 				EFE2ACCB2B894F5C00C8729E /* FriendfaceApp.swift */,
 				EFE2ACCD2B894F5C00C8729E /* ContentView.swift */,
 				EFE2ACDD2B89577100C8729E /* UserView.swift */,
