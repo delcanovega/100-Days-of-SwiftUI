@@ -41,7 +41,9 @@ struct UserView: View {
                         Text("\(user.address.replacingOccurrences(of: ", ", with: "\n"))")
                     }
                     .padding(.leading, 10)
+
                     Spacer()
+                    
                     NavigationLink(destination: {
                         FriendsView(userName: user.name, friends: user.friends)
                     }) {
@@ -57,6 +59,7 @@ struct UserView: View {
                 Divider()
                 
                 Text(user.about)
+                    .padding(.top)
                 Text("\(user.tags.map{"#\($0)"}.joined(separator: ", "))")
                     .font(.subheadline)
                     .bold()
