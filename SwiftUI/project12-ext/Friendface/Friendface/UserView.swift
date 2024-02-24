@@ -30,9 +30,9 @@ struct UserView: View {
                     }
                 }
                 .padding()
-
+                
                 Divider()
-
+                
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Address")
@@ -42,9 +42,9 @@ struct UserView: View {
                     }
                     .padding(.leading, 10)
                     Spacer()
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: {
+                        FriendsView(userName: user.name, friends: user.friends)
+                    }) {
                         VStack {
                             Text("\(user.friends.count)")
                                 .font(.largeTitle)
