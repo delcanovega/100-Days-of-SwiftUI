@@ -32,6 +32,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                .mapStyle(viewModel.selectedMapStyle)
                 .ignoresSafeArea()
 
                 Circle()
@@ -43,6 +44,14 @@ struct ContentView: View {
                     Spacer()
 
                     HStack {
+                        Picker("", selection: $viewModel.mapType) {
+                            Text("Default").tag(0)
+                            Text("Transit").tag(1)
+                            Text("Satellite").tag(2)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        
                         Spacer()
 
                         Button {

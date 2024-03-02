@@ -8,6 +8,7 @@
 import Foundation
 import LocalAuthentication
 import MapKit
+import _MapKit_SwiftUI
 
 extension ContentView {
     @MainActor class ViewModel: ObservableObject {
@@ -15,6 +16,17 @@ extension ContentView {
         @Published private(set) var locations: [Location]
         @Published var selectedPlace: Location?
         @Published var isUnlocked = false
+        
+        @Published var mapType: Int = 0
+        
+        var selectedMapStyle: MapStyle {
+                return switch(mapType) {
+                  case 0: .standard
+                  case 1: .hybrid
+                  case 2: .imagery
+                  default: .standard
+                }
+            }
 
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
 
