@@ -16,6 +16,7 @@
 		51E6897327614B8400ECB2F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E6897227614B8400ECB2F5 /* ContentView.swift */; };
 		51E6897527614B8500ECB2F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51E6897427614B8500ECB2F5 /* Assets.xcassets */; };
 		51E6897827614B8500ECB2F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51E6897727614B8500ECB2F5 /* Preview Assets.xcassets */; };
+		EFB1E5A82B93EE3F00103F31 /* AddView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB1E5A72B93EE3F00103F31 /* AddView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		51E6897227614B8400ECB2F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		51E6897427614B8500ECB2F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51E6897727614B8500ECB2F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EFB1E5A72B93EE3F00103F31 /* AddView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				51E6897027614B8400ECB2F5 /* BucketlistApp.swift */,
 				51E6897227614B8400ECB2F5 /* ContentView.swift */,
 				518D8BCD27641EF300D67BC3 /* ContentView-ViewModel.swift */,
+				EFB1E5A72B93EE3F00103F31 /* AddView-ViewModel.swift */,
 				518D8BCF2764221600D67BC3 /* FileManager-DocumentsDirectory.swift */,
 				518D8BC92764159F00D67BC3 /* Result.swift */,
 				512C32BB2762CA450050F0B2 /* EditView.swift */,
@@ -159,6 +162,7 @@
 				512C32B82762BE010050F0B2 /* Location.swift in Sources */,
 				512C32BC2762CA450050F0B2 /* EditView.swift in Sources */,
 				51E6897127614B8400ECB2F5 /* BucketlistApp.swift in Sources */,
+				EFB1E5A82B93EE3F00103F31 /* AddView-ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
