@@ -19,6 +19,9 @@ extension ContentView {
         
         @Published var mapType: Int = 0
         
+        @Published var showingAlert: Bool = false
+        @Published var error: String?
+        
         var selectedMapStyle: MapStyle {
                 return switch(mapType) {
                   case 0: .standard
@@ -76,7 +79,8 @@ extension ContentView {
                             self.isUnlocked = true
                         }
                     } else {
-                        // error
+                        self.error = authenticationError?.localizedDescription
+                        self.showingAlert = true
                     }
                 }
             } else {

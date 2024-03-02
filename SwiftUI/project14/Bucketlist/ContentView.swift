@@ -81,6 +81,9 @@ struct ContentView: View {
             .background(.blue)
             .foregroundColor(.white)
             .clipShape(Capsule())
+            .alert(viewModel.error ?? "", isPresented: $viewModel.showingAlert) {
+                Button("OK", role: .cancel) { }
+            }
         }
     }
 }
