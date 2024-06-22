@@ -1,34 +1,38 @@
 //
 //  ContentView.swift
-//  Bucketlist
+//  BucketList
 //
-//  Created by Paul Hudson on 08/12/2021.
+//  Created by Paul Hudson on 08/05/2024.
 //
 
 import MapKit
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = ViewModel()
+    @State private var viewModel = ViewModel()
+
+    let startPosition = MapCameraPosition.region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 56, longitude: -3),
+            span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
+        )
+    )
 
     var body: some View {
         if viewModel.isUnlocked {
-            ZStack {
-                Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
-                    MapAnnotation(coordinate: location.coordinate) {
-                        VStack {
+            MapReader { proxy in
+                Map(initialPosition: startPosition) {
+                    ForEach(viewModel.locations) { location in
+                        Annotation(location.name, coordinate: location.coordinate) {
                             Image(systemName: "star.circle")
                                 .resizable()
-                                .foregroundColor(.red)
+                                .foregroundStyle(.red)
                                 .frame(width: 44, height: 44)
                                 .background(.white)
-                                .clipShape(Circle())
-
-                            Text(location.name)
-                                .fixedSize()
-                        }
-                        .onTapGesture {
-                            viewModel.selectedPlace = location
+                                .clipShape(.circle)
+                                .onLongPressGesture {
+                                    viewModel.selectedPlace = location
+                                }
                         }
                     }
                 }
@@ -67,10 +71,10 @@ struct ContentView: View {
                         .padding(.trailing)
                     }
                 }
-            }
-            .sheet(item: $viewModel.selectedPlace) { place in
-                EditView(location: place) { newLocation in
-                    viewModel.update(location: newLocation)
+                .sheet(item: $viewModel.selectedPlace) { place in
+                    EditView(location: place) {
+                        viewModel.update(location: $0)
+                    }
                 }
             }
         } else {
@@ -88,8 +92,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
